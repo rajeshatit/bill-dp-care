@@ -100,6 +100,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit;
     }
 }
+$order_detail = $product_result = array();
+$product_count = 0;
+if($_GET['id']){
+    // Order Details
+    $order_id = $_GET['id'];
+    $sql = "SELECT * FROM bill_service_order WHERE id=$order_id";
+    $order_result = mysqli_query($db,$sql);
+    $order_detail = mysqli_fetch_array($order_result,MYSQLI_ASSOC);
+    $order_count = mysqli_num_rows($order_result);
+    
+    //Product Details
+    $sql = "SELECT * FROM bill_service_product_order WHERE sale_id=$order_id";
+    $product_result = mysqli_query($db,$sql);
+    $product_count = mysqli_num_rows($product_result);
+}
 ?>
 <html>
     <?php include "head.php"; ?>
@@ -142,13 +157,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                             <div class="form-group required">
                                                 <label class="col-sm-2 control-label" for="input-name">Customer Name</label>
                                                 <div class="col-sm-10">
-                                                    <input type="text" name="customer_name" value="" placeholder="Customer Name" id="input-name1" class="form-control">
+                                                    <input type="text" name="customer_name" value="<?php echo $order_detail['customer_name']; ?>" placeholder="Customer Name" id="input-name1" class="form-control">
                                                 </div>
                                             </div>
                                             <div class="form-group required">
                                                 <label class="col-sm-2 control-label" for="input-address">Address</label>
                                                 <div class="col-sm-10">
-                                                    <textarea name="address" rows="5" placeholder="Address" id="input-meta-address" class="form-control"></textarea>
+                                                    <textarea name="address" rows="5" placeholder="Address" id="input-meta-address" class="form-control"><?php echo $order_detail['address']; ?></textarea>
                                                 </div>
                                             </div>
                                             <!--div class="form-group">
@@ -160,25 +175,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                             <div class="form-group">
                                                 <label class="col-sm-2 control-label" for="input-vehicle-make">Vehicle Make</label>
                                                 <div class="col-sm-10">
-                                                    <input type="text" name="vehicle_make" value="" placeholder="Vehicle Make" id="input-vehicle-make" class="form-control">
+                                                    <input type="text" name="vehicle_make" value="<?php echo $order_detail['vehicle_make']; ?>" placeholder="Vehicle Make" id="input-vehicle-make" class="form-control">
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label class="col-sm-2 control-label" for="input-vehicle-no">Vehicle No.</label>
                                                 <div class="col-sm-10">
-                                                    <input type="text" name="vehicle_no" value="" placeholder="Vehicle No" id="input-vehicle-no" class="form-control">
+                                                    <input type="text" name="vehicle_no" value="<?php echo $order_detail['vehicle_no']; ?>" placeholder="Vehicle No" id="input-vehicle-no" class="form-control">
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label class="col-sm-2 control-label" for="input-phone">Phone</label>
                                                 <div class="col-sm-10">
-                                                    <input type="text" name="phone" value="" placeholder="Phone" id="input-phone" class="form-control">
+                                                    <input type="text" name="phone" value="<?php echo $order_detail['phone']; ?>" placeholder="Phone" id="input-phone" class="form-control">
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label class="col-sm-2 control-label" for="input-e-mail">E-mail</label>
                                                 <div class="col-sm-10">
-                                                    <input type="text" name="email" value="" placeholder="E-mail" id="input-mail" class="form-control">
+                                                    <input type="text" name="email" value="<?php echo $order_detail['email']; ?>" placeholder="E-mail" id="input-mail" class="form-control">
                                                 </div>
                                             </div>
 
