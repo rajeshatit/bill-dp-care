@@ -306,7 +306,7 @@ function setCustomMessage(checked_msg,check_services){
                 var cus = new Date((+new Date(purchase_date)) + 2678400000);
 //                var custom_date = cus.getDate() +' - ' + cus.getMonth() + ' - ' + cus.getFullYear();
                 var custom_date = $.datepicker.formatDate('dd-M-yy', cus);
-                send_msg = 'Hi('+ obj.customer_name +') this is friendly reminder from DP wheel care point kpm,\nthat your vehicle ('+ obj.vehicle_no +')  free wheel alignment  Will end tomorrow ('+ custom_date +').\nplease check it  for comfortable and safe drive.\nRgds,\nDP wheel care point.';
+                send_msg = 'Hi('+ obj.customer_name +') this is friendly reminder from DP wheel care point kpm, that your vehicle ('+ obj.vehicle_no +')  free wheel alignment  Will end tomorrow ('+ custom_date +').\nplease check it  for comfortable and safe drive.\nRgds,\nDP wheel care point.';
             }
         }
         if(checked_msg == 3){
